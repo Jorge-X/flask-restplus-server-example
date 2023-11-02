@@ -177,6 +177,6 @@ jobs:
 ```
 
 Acho que com isso provo minha utilidade para o projeto.
-Espero que gostem
+Espero que gostem...
 # END
 # ( ≖.≖)
