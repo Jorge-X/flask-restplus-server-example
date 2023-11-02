@@ -125,6 +125,8 @@ https://pyup.io or email sales@pyup.io
 
 ## Workflow
 #### !!SEMPRE QUE ACONTECER UMA ATUALIAÇÂO NO REPOSITORIO O WORKFLOW VAI BUSCAR FALHAS DE SEGURANÇA!!
+![Captura de tela de 2023-11-02 20-56-06](https://github.com/Jorge-X/ELT-with-Power-BI/assets/140755201/fc940640-3bcf-47c9-a991-4d605142cb49)
+
 Agora, os passos de upload dos artefatos estão dentro do bloco security_scan e devem ser executados após a execução do Bandit e do Safety Check. Esses artefatos estarão disponíveis para download após a conclusão bem-sucedida do workflow.
 Para visualizar os resultados e entender melhor quais foram as questões de segurança identificadas, você pode abrir o arquivo bandit_results.txt (gerado pelo comando bandit -r . > bandit_results.txt) para examinar as descobertas específicas feitas pelo Bandit.
 
