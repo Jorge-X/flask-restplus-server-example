@@ -1,0 +1,40 @@
+name: Security Checks
+
+on: [push]
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
+        run: |
+          pip install bandit safety
+
+      - name: Run Bandit
+        run: |
+          bandit -r . > bandit_results.txt
+
+      - name: Run Safety Check
+        run: |
+          safety check > safety_results.txt
+
+      - name: Upload Bandit results
+        uses: actions/upload-artifact@v2
+        with:
+          name: bandit-results
+          path: bandit_results.txt
+
+      - name: Upload Safety results
+        uses: actions/upload-artifact@v2
+        with:
+          name: safety-results
+          path: safety_results.txt
