@@ -124,16 +124,19 @@ https://pyup.io or email sales@pyup.io
 ```
 
 ## Workflow
-#### !!SEMPRE QUE ACONTECER UMA ATUALIAÇÂO NO REPOSITORIO O WORKFLOW VAI BUSCAR FALHAS DE SEGURANÇA!!
+#### !!!SEMPRE QUE ACONTECER UMA ATUALIAÇÂO NO REPOSITORIO O WORKFLOW VAI BUSCAR FALHAS DE SEGURANÇA!!!
 ![Captura de tela de 2023-11-02 21-23-41](https://github.com/Jorge-X/ELT-with-Power-BI/assets/140755201/88f654fa-f846-4229-a3fb-8e41c3d2093f)
 
 Agora, os passos de upload dos artefatos estão dentro do bloco security_scan e devem ser executados após a execução do Bandit e do Safety Check. Esses artefatos estarão disponíveis para download após a conclusão bem-sucedida do workflow.
 Para visualizar os resultados e entender melhor quais foram as questões de segurança identificadas, você pode abrir o arquivo bandit_results.txt (gerado pelo comando bandit -r . > bandit_results.txt) para examinar as descobertas específicas feitas pelo Bandit.
+#### !!!RELATORIOS GERADOS PELO WORKFLOW!!!
+![Captura de tela de 2023-11-02 21-26-42](https://github.com/Jorge-X/ELT-with-Power-BI/assets/140755201/1d506c22-5f1f-449c-87c9-b795c0fd0127)
 
 O conteúdo do arquivo bandit_results.txt conterá detalhes sobre os problemas encontrados, como possíveis vulnerabilidades, práticas inseguras ou falhas conhecidas no código Python analisado. Abra esse arquivo para obter mais informações sobre as questões específicas identificadas pelo Bandit e trabalhe para corrigir esses problemas de segurança no código.
 
 ### Codigo utilizado no workflow:
 ```yml
+
 name: Security Checks
 
 on: [push]
@@ -154,16 +157,14 @@ jobs:
       - name: Install dependencies
         run: |
           pip install bandit safety
-
       - name: Run Bandit
-        run: |
-          bandit -r . > bandit_results.txt
+        run: bandit -r . --format txt -o bandit_results.txt || true  # Este comando pode ignorar os erros e continuar a execução
 
       - name: Run Safety Check
-        run: |
-          safety check > safety_results.txt
+        run: safety check --json > safety_results.json  # Executa o Safety Check e armazena os resultados em um arquivo JSON
 
       - name: Upload Bandit results
+        if: always()  # Isso garante que os resultados sejam carregados mesmo se houver erros no Bandit
         uses: actions/upload-artifact@v2
         with:
           name: bandit-results
@@ -173,7 +174,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: safety-results
-          path: safety_results.txt
+          path: safety_results.json
 
 
 ```
