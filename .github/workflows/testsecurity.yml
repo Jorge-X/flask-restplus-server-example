@@ -21,7 +21,7 @@ jobs:
 
       - name: Run Bandit
         run: |
-          bandit -r . > bandit_results.txt
+          bandit -r . --format txt -o bandit_results.txt
 
       - name: Run Safety Check
         run: |
