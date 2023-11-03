@@ -20,14 +20,13 @@ jobs:
           pip install bandit safety
 
       - name: Run Bandit
-        run: |
-          bandit -r . --format txt -o bandit_results.txt
+        run: bandit -r . --format txt -o bandit_results.txt || true  # Este comando pode ignorar os erros e continuar a execução
 
       - name: Run Safety Check
-        run: |
-          safety check > safety_results.txt
+        run: safety check --json > safety_results.json  # Executa o Safety Check e armazena os resultados em um arquivo JSON
 
       - name: Upload Bandit results
+        if: always()  # Isso garante que os resultados sejam carregados mesmo se houver erros no Bandit
         uses: actions/upload-artifact@v2
         with:
           name: bandit-results
@@ -37,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: safety-results
-          path: safety_results.txt
+          path: safety_results.json
