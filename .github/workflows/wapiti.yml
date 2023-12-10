@@ -16,23 +16,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: verifica as pastas
-        run: ls 
-
       - name: Install Wapiti
         run: |
           sudo apt-get update
           sudo apt-get install wapiti -y
-
-      - name: verifica as pastas
-        run: ls 
 
       - name: entra em tests as pastas
         run: sudo bash -c 'cd ./tests && ls -la'
 
       - name: Run Wapiti Scan
         run: |
-          ls 
            wapiti -u https://juice-shop.herokuapp.com -f html -o ./tests/report.html
 
       - name: verifica as pastas
