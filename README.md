@@ -74,7 +74,7 @@ https://pyup.io or email sales@pyup.io
    PVE-2022-51668
    For more information, please visit https://pyup.io/v/51668/f17
 
-
+ 
 -> Vulnerability found in sqlalchemy-utils version 0.34.2
    Vulnerability ID: 42194
    Affected spec: >=0.27.0
