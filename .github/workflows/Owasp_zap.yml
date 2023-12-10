@@ -25,7 +25,7 @@ jobs:
 
     - name: Install ZAP CLI
       run: |
-        sudo npm install -g zap-cli
+        npm install -g zap-cli
 
 
     - name: Download and Run ZAP
