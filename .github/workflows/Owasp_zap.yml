@@ -18,6 +18,11 @@ jobs:
       with:
         java-version: '11' # Instala o Java 11
 
+    - name: Install ZAP CLI
+      run: |
+        sudo npm install -g zap-cli
+
+
     - name: Download and Run ZAP
       run: |
         wget https://github.com/zaproxy/zaproxy/releases/download/v2.14.0/ZAP_2_14_0_unix.sh
