@@ -28,7 +28,10 @@ jobs:
         run: |
           cd $HOME/temp_reports
           wapiti -u https://juice-shop.herokuapp.com -f html -o report.html
-          
+      
+      - name: verifica as pastas
+        run: ls -a
+
       - name: Upload Wapiti Report
         uses: actions/upload-artifact@v2
         with:
