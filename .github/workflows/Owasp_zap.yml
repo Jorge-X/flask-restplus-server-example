@@ -3,6 +3,7 @@ name: OWASP ZAP Security Scan
 on:
   push:
     branches: [main] # Executar o workflow ao fazer push na branch 'main'
+  workflow_dispatch: # Permitir acionamento manual
 
 jobs:
   security_scan:
