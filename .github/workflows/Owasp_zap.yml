@@ -22,7 +22,7 @@ jobs:
       run: |
         sudo wget https://github.com/zaproxy/zaproxy/releases/download/v2.14.0/ZAP_2_14_0_unix.sh
         sudo chmod +x ZAP_2_14_0_unix.sh
-        ./ZAP_2_14_0_unix.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true <<EOF
+        sudo ./ZAP_2_14_0_unix.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true <<EOF
         sleep 30 # Espera o ZAP iniciar
         EOF
         o
