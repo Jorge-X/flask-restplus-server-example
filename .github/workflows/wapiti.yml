@@ -16,21 +16,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: verifica as pastas
+        run: ls -R
+
       - name: Create temporary directory
         run: mkdir -p $HOME/temp_reports
+
+      - name: verifica as pastas
+        run: ls -R
 
       - name: Install Wapiti
         run: |
           sudo apt-get update
           sudo apt-get install wapiti -y
 
+      - name: verifica as pastas
+        run: ls -R
+        
       - name: Run Wapiti Scan
         run: |
           cd $HOME/temp_reports
           wapiti -u https://juice-shop.herokuapp.com -f html -o report.html
       
       - name: verifica as pastas
-        run: ls -a
+        run: ls -R
 
       - name: Upload Wapiti Report
         uses: actions/upload-artifact@v2
