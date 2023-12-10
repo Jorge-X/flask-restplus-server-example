@@ -28,7 +28,7 @@ jobs:
         run: ls -R
 
       - name: entra em tests as pastas
-        run: sudo cd /tests
+        run: sudo cd ./tests
 
       - name: Run Wapiti Scan
         run: |
@@ -42,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: wapiti-report
-          path: /report.html/*
+          path: ./tests/report.html/*
