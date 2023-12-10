@@ -19,12 +19,6 @@ jobs:
       - name: verifica as pastas
         run: ls -R
 
-      - name: Create temporary directory
-        run: sudo mkdir /temp_reports
-
-      - name: verifica as pastas
-        run: ls -R
-
       - name: Install Wapiti
         run: |
           sudo apt-get update
@@ -32,10 +26,12 @@ jobs:
 
       - name: verifica as pastas
         run: ls -R
-        
+
+      - name: entra em tests as pastas
+        run: sudo cd /tests
+
       - name: Run Wapiti Scan
         run: |
-          cd /temp_reports
           ls -R
           wapiti -u https://juice-shop.herokuapp.com -f html -o report.html
       
@@ -46,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: wapiti-report
-          path: $HOME/temp_reports/report.html/*
+          path: /report.html/*
