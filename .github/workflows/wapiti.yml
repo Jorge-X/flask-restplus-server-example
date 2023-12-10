@@ -16,10 +16,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.12
+      - name: Create temporary directory
+        run: mkdir -p $HOME/temp_reports
 
       - name: Install Wapiti
         run: |
@@ -28,10 +26,11 @@ jobs:
 
       - name: Run Wapiti Scan
         run: |
-          wapiti -u https://juice-shop.herokuapp.com -f html -o /path/to/report.html
+          cd $HOME/temp_reports
+          wapiti -u https://juice-shop.herokuapp.com -f html -o report.html
           
       - name: Upload Wapiti Report
         uses: actions/upload-artifact@v2
         with:
           name: wapiti-report
-          path: report.html
+          path: $HOME/temp_reports/report.html
