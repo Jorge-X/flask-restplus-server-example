@@ -18,6 +18,11 @@ jobs:
       with:
         java-version: '11' # Instala o Java 11
 
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Versão do Node.js que deseja instalar
+
     - name: Install ZAP CLI
       run: |
         sudo npm install -g zap-cli
