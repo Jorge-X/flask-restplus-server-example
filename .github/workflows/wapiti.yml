@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Wapiti Scan
         run: |
-          ls -a
+          ls 
           wapiti -u https://juice-shop.herokuapp.com -f html -o report.html
       
       - name: verifica as pastas
