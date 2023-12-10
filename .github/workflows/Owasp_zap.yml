@@ -23,15 +23,10 @@ jobs:
       with:
         node-version: '21.4.0' # Versão do Node.js que deseja instalar
 
-    - name: Install Yarn
-      run: |
-        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-        sudo apt-get update && sudo apt-get install yarn
-
   
     - name: Install ZAP CLI
-      run: yarn global add zap-cli --prefix /usr/local
+      run: npm install -g zap-cli
+
 
     - name: Download and Run ZAP
       run: |
