@@ -28,7 +28,7 @@ jobs:
         run: ls -R
 
       - name: entra em tests as pastas
-        run: sudo cd ./tests
+        run: sudo bash -c 'cd ./tests && ls -la'
 
       - name: Run Wapiti Scan
         run: |
