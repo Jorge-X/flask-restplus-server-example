@@ -18,19 +18,15 @@ jobs:
       with:
         java-version: '11' # Instala o Java 11
 
-    - name: Install Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '21.4.0' # Versão do Node.js que deseja instalar
-
-
     - name: Download and Run ZAP
       run: |
         mkdir ~/zap_installer
         mv ZAP_2_14_0_unix.sh ~/zap_installer/
         cd ~/zap_installer
-        sudo ./ZAP_2_14_0_unix.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true &
+        chmod +x ZAP_2_14_0_unix.sh # Modifica as permissões para tornar o arquivo executável
+        ./ZAP_2_14_0_unix.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true &
         sleep 60 # Espera o ZAP iniciar
+
 
     - name: Run ZAP Spider and Generate Report
       run: |
