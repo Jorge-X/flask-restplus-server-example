@@ -29,9 +29,9 @@ jobs:
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
         sudo apt-get update && sudo apt-get install yarn
 
-    - name: Install ZAP
-      run: |
-        yarn global add zap-cli
+  
+    - name: Install ZAP CLI
+      run: yarn global add zap-cli --prefix /usr/local
 
     - name: Download and Run ZAP
       run: |
