@@ -1,6 +1,6 @@
 name: Security Checks
 
-# on: [push]
+on: [push]
 
 jobs:
   security_scan:
