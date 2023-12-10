@@ -1,0 +1,40 @@
+name: OWASP ZAP Security Scan
+
+on:
+  push:
+    branches: [main] # Executar o workflow ao fazer push na branch 'main'
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2 # Faz o checkout do código do repositório
+
+    - name: Install Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11' # Instala o Java 11
+
+    - name: Download and Run ZAP
+      run: |
+        wget https://github.com/zaproxy/zaproxy/releases/download/v2.14.0/ZAP_2_14_0_unix.sh
+        chmod +x ZAP_2_14_0_unix.sh
+        ./ZAP_2_14_0_unix.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true &
+        sleep 60 # Espera o ZAP iniciar
+
+    - name: Run ZAP Spider and Generate Report
+      run: |
+        zap-cli --zap-url http://localhost:8080/ spider http://juice-shop.herokuapp.com/
+        zap-cli --zap-url http://localhost:8080/ alerts -f txt > zap_report.txt # Salva os alertas do ZAP em um arquivo de texto
+
+    - name: Stop ZAP
+      run: |
+        zap-cli --zap-url http://localhost:8080/ shutdown
+
+    - name: Upload Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: zap-report
+        path: zap_report.txt # Faz o upload do relatório do ZAP como um artefato
