@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: verifica as pastas
-        run: ls -R
+        run: ls -a
 
       - name: Install Wapiti
         run: |
@@ -25,18 +25,18 @@ jobs:
           sudo apt-get install wapiti -y
 
       - name: verifica as pastas
-        run: ls -R
+        run: ls -a
 
       - name: entra em tests as pastas
         run: sudo bash -c 'cd ./tests && ls -la'
 
       - name: Run Wapiti Scan
         run: |
-          ls -R
+          ls -a
           wapiti -u https://juice-shop.herokuapp.com -f html -o report.html
       
       - name: verifica as pastas
-        run: ls -R
+        run: ls -a
 
       - name: Upload Wapiti Report
         uses: actions/upload-artifact@v2
