@@ -22,7 +22,7 @@ jobs:
 
       - name: Run Wapiti Scan
         run: |
-          wapiti https://juice-shop.herokuapp.com/ -n 5 -b /path/to/report.html
+          wapiti https://juice-shop.herokuapp.com -n 5 -b /path/to/report.html
           
       - name: Upload Wapiti Report
         uses: actions/upload-artifact@v2
