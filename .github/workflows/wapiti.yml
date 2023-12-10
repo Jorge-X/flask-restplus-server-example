@@ -20,7 +20,7 @@ jobs:
         run: ls -R
 
       - name: Create temporary directory
-        run: mkdir -p $HOME/temp_reports
+        run: sudo mkdir /temp_reports
 
       - name: verifica as pastas
         run: ls -R
@@ -35,7 +35,8 @@ jobs:
         
       - name: Run Wapiti Scan
         run: |
-          cd $HOME/temp_reports
+          cd /temp_reports
+          ls -R
           wapiti -u https://juice-shop.herokuapp.com -f html -o report.html
       
       - name: verifica as pastas
