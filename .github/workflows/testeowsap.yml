@@ -12,7 +12,9 @@ jobs:
 
       - name: cria pasta
         run: |
-          mkdir ./zap/rules.tsv
+          mkdir -p ./zap  
+          touch ./zap/rules.tsv 
+
 
 
       - name: ZAP Scan
