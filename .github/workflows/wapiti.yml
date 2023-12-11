@@ -1,6 +1,8 @@
 name: Wapiti Security Scan
 
 on:
+  schedule:
+    - cron: '0 3 * * *'  # Executar todos os dias às 3h UTC
   push:
     branches:
       - main
