@@ -10,13 +10,6 @@ jobs:
         with:
           ref: master
 
-      - name: cria pasta
-        run: |
-          mkdir -p ./zap  
-          touch ./zap/rules.tsv 
-
-
-
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.10.0
         with:
