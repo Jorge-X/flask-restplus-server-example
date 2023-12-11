@@ -1,6 +1,8 @@
 name: Nikto Security Scan
 
 on:
+  schedule:
+    - cron: '0 3 * * *'  # Executar todos os dias às 3h UTC
   push:
     branches:
       - main  # substitua pelo nome da sua branch principal
@@ -8,8 +10,6 @@ on:
     branches:
       - main  # substitua pelo nome da sua branch principal
   workflow_dispatch: # Permite o acionamento manual do workflow
-
-
 
 jobs:
   security_scan:
