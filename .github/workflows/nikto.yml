@@ -26,7 +26,7 @@ jobs:
 
       - name: Run Nikto scan
         run: |
-          nikto -h example.com -output nikto_report.txt
+          nikto -h http://juice-shop.herokuapp.com -output nikto_report.txt
           # Substitua "example.com" pelo URL da sua aplicação
           # O relatório será salvo como "nikto_report.txt"
           # Você pode personalizar as opções do Nikto conforme necessário
