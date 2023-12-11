@@ -1,0 +1,36 @@
+name: Nikto Security Scan
+
+on:
+  push:
+    branches:
+      - main  # substitua pelo nome da sua branch principal
+  pull_request:
+    branches:
+      - main  # substitua pelo nome da sua branch principal
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Nikto
+        run: |
+          sudo apt update
+          sudo apt install -y nikto
+
+      - name: Run Nikto scan
+        run: |
+          nikto -h example.com -output nikto_report.txt
+          # Substitua "example.com" pelo URL da sua aplicação
+          # O relatório será salvo como "nikto_report.txt"
+          # Você pode personalizar as opções do Nikto conforme necessário
+          # como adicionar flags ou opções adicionais
+          
+      - name: Upload Nikto report
+        uses: actions/upload-artifact@v2
+        with:
+          name: nikto-report
+          path: nikto_report.txt
