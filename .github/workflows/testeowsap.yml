@@ -1,5 +1,14 @@
 name: OWASP ZAP
-on: [push]
+on: 
+  schedule:
+    - cron: '0 3 * * *'  # Executar todos os dias às 3h UTC
+  push:
+    branches:
+      - main  # substitua pelo nome da sua branch principal
+  pull_request:
+    branches:
+      - main  # substitua pelo nome da sua branch principal
+  workflow_dispatch: # Permite o acionamento manual do workflow
 
 jobs:
   zap_scan:
