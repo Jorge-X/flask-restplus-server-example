@@ -7,6 +7,9 @@ on:
   pull_request:
     branches:
       - main  # substitua pelo nome da sua branch principal
+  workflow_dispatch: # Permite o acionamento manual do workflow
+
+
 
 jobs:
   security_scan:
