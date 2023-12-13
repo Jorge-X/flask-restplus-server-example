@@ -24,10 +24,13 @@ jobs:
         run: |
           ls 
 
-      - name: Executar varredura ZAP
+
+      - name: Executar varredura ZAP e copiar relatório
         run: |
-          docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t http://juice-shop.herokuapp.com -r testreport.html || true
-      
+          docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://www.example.com -r /zap/wrk/testreport.html || true
+          docker cp <ID_do_Container>:/zap/wrk/testreport.html testreport.html
+
+
       - name: Salvar relatório como artefato
         uses: actions/upload-artifact@v2
         with:
