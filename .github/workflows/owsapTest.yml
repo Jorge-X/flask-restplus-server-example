@@ -29,3 +29,8 @@ jobs:
         run: |
           docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://www.example.com -g gen.conf -r testreport.html
 
+      - name: Salvar relatório como artefato
+        uses: actions/upload-artifact@v2
+        with:
+          name: zap-report
+          path: testreport.html
