@@ -22,6 +22,10 @@ jobs:
 
       - name: Executar varredura ZAP
         run: |
+          ls 
+
+      - name: Executar varredura ZAP
+        run: |
           docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t http://juice-shop.herokuapp.com -r testreport.html || true
       
       - name: Salvar relatório como artefato
