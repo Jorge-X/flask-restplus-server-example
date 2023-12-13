@@ -20,11 +20,6 @@ jobs:
         with:
           ref: master
 
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.12
-          
       - name: Executar varredura ZAP
         run: |
           docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://www.example.com -g gen.conf -r testreport.html || true
