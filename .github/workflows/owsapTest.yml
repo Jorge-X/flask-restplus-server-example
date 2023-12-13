@@ -1,4 +1,4 @@
-name: OWASP ZAP
+name: TESTS OWASP ZAP
 on: 
   schedule:
     - cron: '0 3 * * *'  # Executar todos os dias às 3h UTC
