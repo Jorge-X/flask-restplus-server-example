@@ -4,10 +4,10 @@ on:
     - cron: '0 3 * * *'  # Executar todos os dias às 3h UTC
   push:
     branches:
-      - master  # substitua pelo nome da sua branch principal
+      - maste  # substitua pelo nome da sua branch principal
   pull_request:
     branches:
-      - master  # substitua pelo nome da sua branch principal
+      - maste  # substitua pelo nome da sua branch principal
   workflow_dispatch: # Permite o acionamento manual do workflow
   
 jobs:
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: maste
 
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.10.0
