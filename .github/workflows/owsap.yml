@@ -28,3 +28,14 @@ jobs:
           target: 'https://juice-shop.herokuapp.com/'
           rules_file_name: './zap/rules.tsv'
           cmd_options: '-a'
+
+      - name: Check ZAP Scan Results
+        run: |
+          # Verificar se há vulnerabilidades graves (por exemplo, HIGH, MEDIUM)
+          if grep -iq 'Medium' *.html || grep -iq 'High' *.html; then
+            echo "Vulnerabilidades médias ou altas encontradas. Workflow falhou."
+            exit 1
+            else
+              echo "Não foram encontradas vulnerabilidades médias ou altas."
+            fi
+
