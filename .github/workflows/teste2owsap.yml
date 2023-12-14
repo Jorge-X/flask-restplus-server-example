@@ -27,3 +27,14 @@ jobs:
           target: 'https://staging.lacreisaude.com.br'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
+
+      - name: Check ZAP Scan Results
+        run: |
+          # Verificar se há vulnerabilidades graves (por exemplo, HIGH, MEDIUM)
+          if grep -iq 'HIGH' ${{ steps.zap_scan.outputs.alerts_file }} ||
+             grep -iq 'MEDIUM' ${{ steps.zap_scan.outputs.alerts_file }}; then
+            echo "Vulnerabilidades encontradas. Workflow falhou."
+            exit 1
+          else
+            echo "Não foram encontradas vulnerabilidades graves."
+          fi
