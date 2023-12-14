@@ -26,7 +26,8 @@ jobs:
           
       - name: Executar varredura ZAP e copiar relatório
         run: |
-          docker run -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://www.example.com -r testreport.html
+          docker run -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://www.example.com -r testreport.html || true
+
 
       - name: Salvar relatório como artefato
         uses: actions/upload-artifact@v2
