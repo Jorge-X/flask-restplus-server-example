@@ -15,19 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Scan the webapplication
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: ZAP Scan
+        uses: zaproxy/action-full-scan@v0.8.0
         with:
-          ref: master
-
-      - name: Executar varredura ZAP
-        run: |
-          ls 
-          
-      - name: Executar varredura ZAP e copiar relatório
-        run: |
-          docker run --name zap-container -v "$(pwd)/zap_reports:/zap/wrk" -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://www.example.com -r /zap/wrk/testreport.html || true
-          docker cp zap-container:/zap/wrk/testreport.html ./zap_reports/testreport.html
+          target: 'https://www.zaproxy.org/'
 
       - name: Salvar relatório como artefato
         uses: actions/upload-artifact@v2
