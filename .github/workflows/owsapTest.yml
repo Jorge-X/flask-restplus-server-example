@@ -1,11 +1,29 @@
+name: TESTS OWASP ZAP
+on: 
+  schedule:
+    - cron: '0 3 * * *'  # Executar todos os dias às 3h UTC
+  push:
+    branches:
+      - master  # substitua pelo nome da sua branch principal
+  pull_request:
+    branches:
+      - master  # substitua pelo nome da sua branch principal
+  workflow_dispatch: # Permite o acionamento manual do workflow
+  
 jobs:
-  example_job_name: # Nome do trabalho
-    runs-on: ubuntu-latest # Sistema operacional em que será executado
-
-    steps: # Etapas do trabalho
-      - name: Checkout do repositório
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan the webapplication
+    steps:
+      - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: master
 
+      - name: Executar varredura ZAP
+        run: |
+          ls 
+          
       - name: Executar varredura ZAP e copiar relatório
         run: |
           docker run --name zap-container -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://www.example.com -r /zap/wrk/testreport.html || true
