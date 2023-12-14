@@ -31,10 +31,10 @@ jobs:
       - name: Check ZAP Scan Results
         run: |
           # Verificar se há vulnerabilidades graves (por exemplo, HIGH, MEDIUM)
-          if grep -iq 'HIGH' ${{ steps.zap_scan.outputs.alerts_file }} ||
-             grep -iq 'MEDIUM' ${{ steps.zap_scan.outputs.alerts_file }}; then
-            echo "Vulnerabilidades encontradas. Workflow falhou."
+          if grep -iq 'Medium' report_html.html || grep -iq 'High' report_html.html; then
+            echo "Vulnerabilidades médias ou altas encontradas. Workflow falhou."
             exit 1
-          else
-            echo "Não foram encontradas vulnerabilidades graves."
-          fi
+            else
+              echo "Não foram encontradas vulnerabilidades médias ou altas."
+            fi
+
