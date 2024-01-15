@@ -10,7 +10,7 @@ msg = EmailMessage()
 msg['Subject'] = 'DAST LACREI'
 msg['From'] = EMAIL_ADDRESS 
 msg['To'] = 'teste1brvs@gmail.com'
-msg.set_content('Olá, tudo bem?!\nJá fez sua verificação de segurança hoje?\n recomendamos fazer uma verificação todos os dias\n Uma falha de segurança é uma grande perigo!\n sempre lembre de anotar as vunerabilidades corrigidas na documentação!\n https://github.com/Lacrei/lacrei-institucional/actions/workflows/owasp_zap.yml\nhttps://www.notion.so/lacrei/anota-es-Vulnerabilidades-e-falso-positivo-9168a0cd41644f4e8e7acba0fc3c8f90  \nATENCIOSAMENTE: SCAN_OWASP')
+msg.set_content('Olá, tudo bem?!\nJá fez sua verificação de segurança hoje?\n recomendamos fazer uma verificação todos os dias\n Uma falha de segurança é uma grande perigo!\n sempre lembre de anotar as vunerabilidades corrigidas na documentação!\n https://github.com/Lacrei/lacrei-institucional/actions/workflows/owasp_zap.yml\nhttps://www.notion.so/lacrei/f4b829cba43c414cbb8e0e491d20e623?v=40912c3f99ef4e9fb9d4a05b6d8ce98e  \nATENCIOSAMENTE: SCAN_OWASP')
 
 # Usar a porta 587 com STARTTLS
 with smtplib.SMTP('smtp-mail.outlook.com', 587) as smtp:
